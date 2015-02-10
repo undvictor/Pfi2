@@ -86,7 +86,8 @@ public class HumanDogGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(textField_1.getText().length() < 1){
 					textArea_1.setText("Name your dog!");
-				}else if(textField.getText().length() < 3){
+					
+				}else if(human == null){
 					textArea_1.setText("The dog needs an owner");
 					
 				}else{
@@ -103,8 +104,8 @@ public class HumanDogGUI extends JFrame {
 		btnPrintInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(human.getName().toString().isEmpty()){
-				System.out.println("swag swag wolfgang");
+				if(human == null){
+					textArea_1.setText("fill in stuff");
 				}else{
 					textArea_1.setText(human.getInfo());
 					
