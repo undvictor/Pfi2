@@ -52,15 +52,25 @@ public class DigitalClockGUI extends JFrame {
 	
 	//boolean som kollor om användaren satt ett alarm
 	private boolean alarmSet = false;
+	
+	//panel som jag har alla mina komponenter på
 	JPanel panel = new JPanel();
+	
+	//textArea för tid
 	JTextArea textArea = new JTextArea();
+	
+	//textarea för larm
 	JTextArea textArea_1 = new JTextArea();
+	//spinner för timmar - larm
 	JSpinner spinner = new JSpinner();
+	//spinner för minuter - larm
 	JSpinner spinner_1 = new JSpinner();
+	//använder en checkbox för att sätta på larmet istället. tycker det vore kul att använda nya komponenter
 	final JCheckBox chckbxActive = new JCheckBox("Active");
 	
 	public DigitalClockGUI() {
-		
+		//INITIERAR clockLogic-klassen
+		clockLogic = new ClockLogic(this);
 		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,8 +86,6 @@ public class DigitalClockGUI extends JFrame {
 		JLabel lblAlarm = new JLabel("ALARM");
 		lblAlarm.setFont(new Font("Tunga", Font.PLAIN, 99));
 		lblAlarm.setBounds(84, 22, 325, 144);
-	
-		clockLogic = new ClockLogic(this);
 		
 		
 		panel.setBounds(0, 0, 434, 260);
@@ -121,8 +129,11 @@ public class DigitalClockGUI extends JFrame {
 		JLabel lblM = new JLabel("M");
 		lblM.setBounds(129, 116, 19, 14);
 		panel.add(lblM);
+		
+		//Regler för checkboxen
 		chckbxActive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			if(alarmSet){
 				if(chckbxActive.isSelected()){
 					beep = true;
 					
@@ -135,8 +146,14 @@ public class DigitalClockGUI extends JFrame {
 					
 					panel.setBackground(Color.gray);
 				}
+			}else{
+				JOptionPane.showMessageDialog(null, "Set alarm-time first", "Wrong", JOptionPane.PLAIN_MESSAGE);
+				chckbxActive.setSelected(false);
+			}
 			}
 		});
+		
+		// Här sätter du larmet mha en knapp
 		btnSetAlarm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String alarmString ="";
@@ -164,26 +181,24 @@ public class DigitalClockGUI extends JFrame {
 		
 	}
 	
+	//funktion som hämtar realtid och sätter in det i textarea
 	public void setTimeOnLabel(String time){
 		textArea.setText(time);
 		
 	}
 	
+	
+	//alarmmetoden som absolut inte är optimal, men funkar.
 	public boolean alarm(boolean activate){
+		//om du checkat i att du vill ha ett larm
 		if(beep){
-			System.out.println("ring ring");
 			JOptionPane.showMessageDialog(null, "ALARM SET FOR THIS TIME", "ALARM", JOptionPane.PLAIN_MESSAGE);
-		}else{
-			System.out.println("Larmet är tyst igen");
 		}
-		System.out.println("I alarm");
-		System.out.println("ring ring");
 	    
+		//när du tryckt på felmeddelandet, återställ allt
 		beep = false;
 		panel.setBackground(Color.gray);
 		chckbxActive.setSelected(false);
-		
-	
 		return activate;
 	}
 }

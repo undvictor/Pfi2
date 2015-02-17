@@ -27,7 +27,8 @@ public class ClockLogic implements ClockInterface {
 	}
 
 	public void clearAlarm() {
-
+		// allt som skulle kunna hamna här ligger i alarmfunktionen i gui-klassen istället.
+		// Jag resonerar att använda så pass hård bindning mellan klasser vore värre än att föra in lite logik i gui-klassen
 	}
 
 	@Override
@@ -55,10 +56,12 @@ public class ClockLogic implements ClockInterface {
 		
 		//Skicka in till GUI:t
 		clockGUI.setTimeOnLabel(masterString);
+		
+		//variabler för larmchecken
 		realHour = hours;
 		realMinute = minutes;
-		System.out.println(alarmHour + " " + alarmMinute);
-		System.out.println(realHour + " " + realMinute);
+		
+		//om larmtiden och realtid matchar, kör alarmfunktionen i gui-klassen
 		if(alarmHour == realHour && alarmMinute == realMinute){
 			System.out.println("inne i SetAlarm");
 			clockGUI.alarm(true);
