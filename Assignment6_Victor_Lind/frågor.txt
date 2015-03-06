@@ -1,0 +1,14 @@
+1) Malmo Central till Lund Central
+
+2) ?cmdaction=next&selPointFr=0|80000|0&selPointTo=0|81216|0 &noOf=5
+
+3) <Journeys> Journey hämtar alla resealternativ, <Journey> allt som beskriver en foreslagen resa, '
+	<RouteLinks> innehaller alla etapper i en Journey, <RouteLink> innehaller all information om en etapp, 
+	såsom priszoner, fran och till etc.
+4) <RouteLinks> under <Journey>
+
+5) <PriceInfo>
+<PriceType>Ord. pris Barn</PriceType>
+<Price>29</Price>
+<VAT>1.64150941</VAT>
+<JourneyTicketKey>JK127930768697023517900014</JourneyTicketKey>
